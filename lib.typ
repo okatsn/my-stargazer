@@ -2,7 +2,6 @@
 #import "@preview/touying:0.6.1": *
 #import themes.stargazer: *
 #import "@preview/numbly:0.1.0": numbly
-#import "../information/config.typ" // my global configuration
 #import "@preview/mitex:0.2.5": *
 #import "blocks.typ": *
 #import "rubies.typ": *
@@ -10,53 +9,14 @@
 #import "@preview/cetz:0.3.4": canvas, draw
 #import "@preview/fletcher:0.5.7": diagram, node, edge
 #import "colorconfig.typ": *
+#import "timeline.typ": *
 
 
 
-#let self-info = config-info(
-  // KEYNOTE: This is `self.info` in the `...theme.with()` that you can refer.
-  title: [#config.title_zh],
-  subtitle: [#config.title_en],
-  authors: config.authors,
-  author: [#config.authors.join(" ")],
-  short-title: [#config.short-title_zh], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
-  // date: datetime.today(),
-  date: if config.presenting-date == none { datetime.today() } else { config.presenting-date },
-  institution: [#config.department],
-  hello: [world], // You can define arbitrary information (in this example, use with `self.info.hello`)
-)
 
 // Please refer the https://touying-typ.github.io/docs/0.3.2+/layout#page-columns for the composer option.
 #let new-section-plain(..bodies) = slide(title: none, composer: (auto, 1fr), ..bodies)
 
-#let new-section-invert(config: (:), align: horizon + left, ..titlebody) = touying-slide-wrapper(self => {
-  self = utils.merge-dicts(
-    self,
-    config-common(freeze-slide-counter: true),
-    config-page(
-      fill: self.colors.primary,
-      margin: 2em,
-      header: none,
-      footer: none,
-    ),
-  )
-  set text(fill: self.colors.neutral-lightest, weight: "bold", size: 1.2em) // regular texts
-  show heading.where(level: 1): it => [
-    // Set top-level headers.
-    #text(fill: self.colors.neutral-lightest, weight: "black")[#it]
-  ]
-  touying-slide(
-    self: self,
-    config: config,
-    std.align(
-      align,
-      [
-        #{ titlebody.at(0) } \ // title
-        #{ titlebody.at(1) } // brief notes
-      ],
-    ),
-  )
-})
 
 // KEYNOTE: Use `SECTION[= Introduction][- brief notes]` instead of `= Introduction`
 // #let SECTION = new-section-invert
