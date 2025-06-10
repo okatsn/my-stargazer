@@ -1,16 +1,16 @@
 [package]
-name = "my-awesome-package"
-version = "0.1.0"
+name = "my-stargazer"
+version = "0.0.1"
 entrypoint = "lib.typ"
-authors = ["Your Name <your.email@example.com>"]
+authors = ["okatsn@gmail.com"]
 license = "MIT"
-description = "A brief description of what your package does"
-homepage = "https://github.com/yourusername/my-awesome-package"
-repository = "https://github.com/yourusername/my-awesome-package"
-keywords = ["keyword1", "keyword2", "utilities"]
-categories = ["components", "utility"]  # Max 3 categories
-disciplines = ["computer-science"]      # Target audience (optional)
-compiler = "0.12.0"                     # Minimum Typst version required
+description = "A touying template."
+homepage = "https://github.com/okatsn/MyStargazer"
+repository = "https://github.com/okatsn/MyStargazer"
+keywords = ["touying", "repository"]
+categories = ["components", "utility"]               # Max 3 categories
+disciplines = ["computer-science"]                   # Target audience (optional)
+compiler = "0.13.1"                                  # Minimum Typst version required
 
 # For template packages, add:
 # [template]
