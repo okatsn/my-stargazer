@@ -1,5 +1,4 @@
 #import "lib.typ": * // where touying and slide theme was imported.
-
 // CHECKPOINT:
 // - https://github.com/OrangeX4/typst-talk?tab=readme-ov-file
 // - [Touying Gallery](https://github.com/touying-typ/touying/wiki)
@@ -218,3 +217,15 @@
   title: [本期工作內容 \ #text(size: 0.7em)[自相關分析：邁向TIPTree的前置處理]
   ],
 )
+
+
+== Info-box
+
+#infobox(
+  title: [地電站的資訊理論指標所揭示的瞬間變化特徵],
+  type: "info",
+)[
+  - ACF 極緩慢的衰減 #linebreak() #right-arrow #hla[非穩態 (Stepwise Behavior)]
+  - PACF 快速衰減至非顯著水平 #linebreak() #right-arrow #hla[無季節性變動]
+  - PACF 只在 lag 1 顯著 #linebreak() #right-arrow #hla[#rubybtm[Markov Property][馬可夫性質]]
+]
