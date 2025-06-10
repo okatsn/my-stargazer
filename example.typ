@@ -138,68 +138,70 @@
   - 沿革
 ]
 
-
 == Timeline
-#set text(size: 0.6em)
-#let evtbxwidth = 5cm
-#timeline(
-  interval: 1,
-  startyear: 2016,
-  endyear: 2025,
-  events: (
-    event(
-      title: "MagTIP 演算法",
-      year: 2019,
-    ),
-    event(
-      title: "MagTIP 機率預報模式",
-      year: 2020,
-    ),
-    event(
-      title: "多變量 MagTIP 演算法",
-      year: 2021,
-    ),
-    event(
-      title: "GEMS-MagTIP 系統整合",
-      year: 2022,
-    ),
-    event(
-      title: "濾波頻段影響研究",
-      year: 2023,
-    ),
-    event(
-      title: "整合資訊理論",
-      year: 2024,
-    ),
-  ),
-  eventspans: (
-    eventspan(
-      title: strong[GEMSTIP 演算法],
-      start-point: 2016,
-      end-point: 2018,
-      color: theme-color-configuration.colors.primary,
-      box-width: evtbxwidth,
-    ),
-    eventspan(
-      title: strong[MagTIP 發展期],
-      start-point: 2019,
-      end-point: 2022,
-      color: theme-color-configuration.colors.quaternary-light,
-      box-width: evtbxwidth,
-    ),
-    eventspan(
-      title: strong[系統整合與分析期],
-      start-point: 2022,
-      end-point: 2025,
-      color: theme-color-configuration.colors.secondary,
-      box-width: evtbxwidth,
-    ),
-  ),
-  length-of-timeline: 23,
-  linestroke: 2pt + black,
-  spanheight: 0.8,
-)
 
+#slide[
+  #set text(size: 0.6em)
+  #let evtbxwidth = 5cm
+  #timeline(
+    interval: 1,
+    startyear: 2016,
+    endyear: 2025,
+    events: (
+      event(
+        title: "MagTIP 演算法",
+        year: 2019,
+      ),
+      event(
+        title: "MagTIP 機率預報模式",
+        year: 2020,
+      ),
+      event(
+        title: "多變量 MagTIP 演算法",
+        year: 2021,
+      ),
+      event(
+        title: "GEMS-MagTIP 系統整合",
+        year: 2022,
+      ),
+      event(
+        title: "濾波頻段影響研究",
+        year: 2023,
+      ),
+      event(
+        title: "整合資訊理論",
+        year: 2024,
+      ),
+    ),
+    eventspans: (
+      eventspan(
+        title: strong[GEMSTIP 演算法],
+        start-point: 2016,
+        end-point: 2018,
+        color: theme-color-configuration.colors.primary,
+        box-width: evtbxwidth,
+      ),
+      eventspan(
+        title: strong[MagTIP 發展期],
+        start-point: 2019,
+        end-point: 2022,
+        color: theme-color-configuration.colors.quaternary-light,
+        box-width: evtbxwidth,
+      ),
+      eventspan(
+        title: strong[系統整合與分析期],
+        start-point: 2022,
+        end-point: 2025,
+        color: theme-color-configuration.colors.secondary,
+        box-width: evtbxwidth,
+      ),
+    ),
+    length-of-timeline: 23,
+    linestroke: 2pt + black,
+    spanheight: 0.8,
+  )
+
+]
 
 == Roadmap
 
