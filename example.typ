@@ -229,3 +229,12 @@
   - PACF 快速衰減至非顯著水平 #linebreak() #right-arrow #hla[無季節性變動]
   - PACF 只在 lag 1 顯著 #linebreak() #right-arrow #hla[#rubybtm[Markov Property][馬可夫性質]]
 ]
+
+
+
+#show: appendix
+
+#SECTION[= 附錄][
+
+
+]
