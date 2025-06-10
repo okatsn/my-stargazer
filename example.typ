@@ -77,8 +77,6 @@
 )
 
 
-#include "chapters/slide.typ"
-
 #set figure(numbering: none)
 
 // KEYNOTE: Guideline for this talk (by CCC in meeting 0611)
