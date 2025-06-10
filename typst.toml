@@ -1,0 +1,22 @@
+[package]
+name = "my-awesome-package"
+version = "0.1.0"
+entrypoint = "lib.typ"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+description = "A brief description of what your package does"
+homepage = "https://github.com/yourusername/my-awesome-package"
+repository = "https://github.com/yourusername/my-awesome-package"
+keywords = ["keyword1", "keyword2", "utilities"]
+categories = ["components", "utility"]  # Max 3 categories
+disciplines = ["computer-science"]      # Target audience (optional)
+compiler = "0.12.0"                     # Minimum Typst version required
+
+# For template packages, add:
+# [template]
+# path = "template"
+# entrypoint = "main.typ" 
+# thumbnail = "thumbnail.png"
+
+# Exclude large files from the package bundle
+exclude = ["*.pdf", "docs/", "examples/large-files/"]
