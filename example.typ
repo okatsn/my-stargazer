@@ -221,15 +221,46 @@
 )
 
 
-== Info-box
+== Info-box and stacked simple-rect
 
-#infobox(
-  title: [地電站的資訊理論指標所揭示的瞬間變化特徵],
-  type: "info",
-)[
-  - ACF 極緩慢的衰減 #linebreak() #right-arrow #hla[非穩態 (Stepwise Behavior)]
-  - PACF 快速衰減至非顯著水平 #linebreak() #right-arrow #hla[無季節性變動]
-  - PACF 只在 lag 1 顯著 #linebreak() #right-arrow #hla[#rubybtm[Markov Property][馬可夫性質]]
+#slide[
+  #set text(size: 0.85em)
+  #infobox(
+    title: [地磁站的資訊理論指標所揭示的時間相依結構],
+    type: "danger",
+  )[
+    - ACF/PACF 衰減快 #right-arrow-c #hlc[穩態]
+    - ACF/PACF 在 lag 27 出現超越95%信賴區間的「丘狀」特徵 #linebreak() #right-arrow-c #hlc[$tilde 27$ 天週期的季節性變化]
+  ]
+
+  #set align(center)
+
+  #set text(size: 0.7em, weight: "bold")
+
+  #stack(
+    simple-rect(alignment: left)[
+      🌔 月球的軌道(公轉)週期 $tilde 27.3$ days
+      @guoqing273day136dayAtmospheric2005
+    ],
+    simple-rect(alignment: left)[
+      ☀️ 太陽的自轉週期 $tilde 27$ days
+      @bartelsTwentysevenDayRecurrences1934
+      @beckComparisonDifferentialRotation2000
+    ],
+  )
+
+]
+
+
+
+== 參考文獻
+
+#slide()[
+
+  #set page(columns: 2)
+  #set text(size: 0.7em)
+  #bibliography("example.bib", style: "springer-basic", title: none)
+
 ]
 
 
