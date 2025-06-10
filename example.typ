@@ -13,39 +13,31 @@
 
 
 // config.typ
-#let config = [
-  #let keywords_zh = (
+#let config = (
+  keywords_zh: (
     [地磁場異常],
     [地震前兆],
     [資訊分析],
-  )
-
-
-  #let keywords_en = (
+  ),
+  keywords_en: (
     [geomagnetic anomalies],
     [earthquake precursor],
     [informational analysis],
-  )
-
-  #let title_zh = [
+  ),
+  title_zh: [
     114年地震前兆觀測作業與分析技術相關研究— \
     地震電磁前兆現象的機器學習與資訊理論分析
-  ]
-  #let short-title_zh = [地震電磁前兆現象的機器學習與資訊理論分析]
-
-  #let title_en = [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory]
-
-  #let project_code = [MOTC-CWA-114-E-05] // Not used yet.
-
-  #let presenting-date = "2025-06-11" // Set `none` to show datetime.today(). See self-info in src/slide.typ
-
-  #let authors = (
+  ],
+  short-title_zh: [地震電磁前兆現象的機器學習與資訊理論分析],
+  title_en: [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory],
+  project_code: [MOTC-CWA-114-E-05], // Not used yet.
+  presenting-date: "2025-06-11", // Set `none` to show datetime.today(). See self-info in src/slide.typ
+  authors: (
     [陳建志],
     [吳宗羲],
-  )
-
-  #let department = [國立中央大學地球科學系]
-]
+  ),
+  department: [國立中央大學地球科學系],
+)
 
 
 
