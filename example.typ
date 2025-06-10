@@ -200,3 +200,21 @@
   linestroke: 2pt + black,
   spanheight: 0.8,
 )
+
+
+== Roadmap
+
+
+#let items = (
+  text()[缺失值與異常值的處理],
+  text()[自相關分析：ACF/PACF 分析時間相依結構],
+  text()[識別地電磁指標樣態 #right-arrow-c #hlc[特徵工程指引]],
+  text(fill: gray)[發展降維技術解決特徵共線性問題],
+)
+
+#roadmap-diagram(
+  items,
+  highlight-at: items.len() - 2,
+  title: [本期工作內容 \ #text(size: 0.7em)[自相關分析：邁向TIPTree的前置處理]
+  ],
+)
