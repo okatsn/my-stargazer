@@ -1,4 +1,5 @@
-#import "lib.typ": * // where touying and slide theme was imported.
+#import "../lib.typ": * // where touying and slide theme was imported.
+#import "config.typ"
 // CHECKPOINT:
 // - https://github.com/OrangeX4/typst-talk?tab=readme-ov-file
 // - [Touying Gallery](https://github.com/touying-typ/touying/wiki)
@@ -11,35 +12,19 @@
 // - https://touying-typ.github.io/docs/themes/dewdrop/#initialization
 
 
-// config.typ
-#let config = (
-  title_main: [
-    114年地震前兆觀測作業與分析技術相關研究— \
-    地震電磁前兆現象的機器學習與資訊理論分析
-  ],
-  title_short: [地震電磁前兆現象的機器學習與資訊理論分析],
-  title_sub: [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory],
-  presenting-date: "2025-06-11", // Set `none` to show datetime.today(). See self-info in src/slide.typ
-  authors: (
-    [陳建志],
-    [吳宗羲],
-  ),
-  department: [國立中央大學地球科學系],
-)
-
 
 
 
 #let self-info = config-info(
   // KEYNOTE: This is `self.info` in the `...theme.with()` that you can refer.
-  title: [#config.title_main],
-  subtitle: [#config.title_sub],
-  authors: config.authors,
-  author: [#config.authors.join(" ")],
-  short-title: [#config.title_short], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
+  title: [#config.info.title_main],
+  subtitle: [#config.info.title_sub],
+  authors: config.info.authors,
+  author: [#config.info.authors.join(" ")],
+  short-title: [#config.info.title_short], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
   // date: datetime.today(),
-  date: if config.presenting-date == none { datetime.today() } else { config.presenting-date },
-  institution: [#config.department],
+  date: if config.info.presenting-date == none { datetime.today() } else { config.info.presenting-date },
+  institution: [#config.info.department],
   hello: [world], // You can define arbitrary information (in this example, use with `self.info.hello`)
 )
 
