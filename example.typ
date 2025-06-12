@@ -13,23 +13,12 @@
 
 // config.typ
 #let config = (
-  keywords_zh: (
-    [地磁場異常],
-    [地震前兆],
-    [資訊分析],
-  ),
-  keywords_en: (
-    [geomagnetic anomalies],
-    [earthquake precursor],
-    [informational analysis],
-  ),
-  title_zh: [
+  title_main: [
     114年地震前兆觀測作業與分析技術相關研究— \
     地震電磁前兆現象的機器學習與資訊理論分析
   ],
-  short-title_zh: [地震電磁前兆現象的機器學習與資訊理論分析],
-  title_en: [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory],
-  project_code: [MOTC-CWA-114-E-05], // Not used yet.
+  title_short: [地震電磁前兆現象的機器學習與資訊理論分析],
+  title_sub: [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory],
   presenting-date: "2025-06-11", // Set `none` to show datetime.today(). See self-info in src/slide.typ
   authors: (
     [陳建志],
@@ -43,15 +32,14 @@
 
 #let self-info = config-info(
   // KEYNOTE: This is `self.info` in the `...theme.with()` that you can refer.
-  title: [#config.title_zh],
-  subtitle: [#config.title_en],
+  title: [#config.title_main],
+  subtitle: [#config.title_sub],
   authors: config.authors,
   author: [#config.authors.join(" ")],
-  short-title: [#config.short-title_zh], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
+  short-title: [#config.title_short], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
   // date: datetime.today(),
   date: if config.presenting-date == none { datetime.today() } else { config.presenting-date },
   institution: [#config.department],
-  hello: [world], // You can define arbitrary information (in this example, use with `self.info.hello`)
 )
 
 // Show stargazer
