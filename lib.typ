@@ -96,7 +96,7 @@
     show: std.align.with(center + top)
     block(
       fill: self.colors.primary,
-      inset: 1.5em,
+      inset: 1em,
       radius: 0.5em,
       breakable: false,
       {
@@ -111,7 +111,7 @@
     grid(
       columns: (auto,) * calc.min(info.authors.len(), 3),
       column-gutter: 1em,
-      row-gutter: 1em,
+      row-gutter: 0.5em,
       ..info.authors.map(author => text(fill: black, author)),
     )
     // others
