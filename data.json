@@ -1,5 +1,5 @@
 {
-    "devcontainer_name": "MyStargazer",
+    "devcontainer_name": "my-stargazer",
     "service": "devsgzr",
     "image": "sgzr",
     "docker_compose_name": "typst-stargazer-with-julia"
