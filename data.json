@@ -2,5 +2,6 @@
     "devcontainer_name": "my-stargazer",
     "service": "devsgzr",
     "image": "sgzr",
-    "docker_compose_name": "typst-stargazer-with-julia"
+    "docker_compose_name": "typst-stargazer-with-julia",
+    "dind": false
 }
