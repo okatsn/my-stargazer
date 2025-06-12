@@ -21,6 +21,15 @@ and
 #import "@local/my-stargazer:0.0.1": *
 ```
 
+
+Remove all versions
+
+
+```bash
+yes | rm -rv ~/.local/share/typst/packages/local/my-stargazer
+
+```
+
 ## Example Typst Package Structure
 
 my-package/
