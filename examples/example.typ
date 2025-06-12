@@ -40,6 +40,7 @@
   // date: datetime.today(),
   date: if config.presenting-date == none { datetime.today() } else { config.presenting-date },
   institution: [#config.department],
+  hello: [world], // You can define arbitrary information (in this example, use with `self.info.hello`)
 )
 
 // Show stargazer
