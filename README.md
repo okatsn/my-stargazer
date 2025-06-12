@@ -1,9 +1,24 @@
 # README
 
 ## How to use
+
+Install my-stargazer
+
 ```bash
-mkdir -p ~/.local/share/typst/packages/local/my-stargazer/0.1.0
+pkgver="0.0.1"
+target_path=~/.local/share/typst/packages/local/my-stargazer/$pkgver
+mkdir -p target_path
+git clone --depth 1 --branch $pkgver https://github.com/okatsn/my-stargazer.git $target_path
+# Create symlink to your development directory
+ln -s ~/workspace $target_path
 ```
+
+and 
+
+```typst
+#import "@local/my-stargazer:0.0.1": *
+```
+
 ## Example Typst Package Structure
 
 my-package/
