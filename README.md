@@ -11,6 +11,8 @@ mkdir -p target_path
 git clone --depth 1 --branch $pkgver https://github.com/okatsn/my-stargazer.git $target_path
 # Create symlink to your development directory
 ln -s ~/workspace $target_path
+# Add Symlink just created to gitignore
+echo $pkgver >> ~/workspace/.gitignore
 ```
 
 and 
