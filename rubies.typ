@@ -5,7 +5,7 @@
 // Ruby goes first, base text - second. Here is an example:
 // #ruby[ふりがな][振り仮名]
 //
-#let ruby-size = 0.6em
+#let ruby-size = 0.654em
 
 #let rubytop(rt, rb, size: ruby-size, alignment: "center") = {
   let ruby-fn = get-ruby(
