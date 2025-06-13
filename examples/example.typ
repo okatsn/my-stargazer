@@ -70,7 +70,7 @@
         // Set top-level headers.
         #text(
           size: 1.5em, // Larger size for emphasis
-          stroke: 0.3pt, // Very slight stroke to simulate "boldness"
+          stroke: 0pt, // You may assign slight stroke to simulate "boldness"
         )[#it]
       ]
       show heading.where(level: 2): it => [

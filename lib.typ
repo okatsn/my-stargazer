@@ -15,7 +15,15 @@
 
 
 // Please refer the https://touying-typ.github.io/docs/0.3.2+/layout#page-columns for the composer option.
-#let new-section-plain(..bodies) = slide(title: none, composer: (auto, 1fr), ..bodies)
+#let new-section-plain(left, right) = slide(
+  title: none,
+  composer: (auto, 1fr),
+  [
+    #set text(fill: theme-color-configuration.colors.primary)
+    #left
+  ],
+  right,
+)
 
 
 // KEYNOTE: Use `SECTION[= Introduction][- brief notes]` instead of `= Introduction`
