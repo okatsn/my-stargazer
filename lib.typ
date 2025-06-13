@@ -81,7 +81,13 @@
 // Custom title slide
 // Modified from ~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ
 
-#let custom-title(config: (:), title-block-width: auto, ..args) = touying-slide-wrapper(self => {
+#let custom-title(
+  config: (:),
+  title-block-width: auto,
+  title-block-inset: 1em,
+  title-block-below: auto,
+  ..args,
+) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config,
@@ -105,8 +111,9 @@
     block(
       width: title-block-width,
       fill: self.colors.primary,
-      inset: 1em,
+      inset: title-block-inset,
       radius: 0.5em,
+      below: title-block-below,
       breakable: false,
       {
         text(size: 1.2em, fill: self.colors.neutral-lightest, weight: "bold", info.title)
