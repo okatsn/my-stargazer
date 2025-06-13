@@ -49,6 +49,7 @@
     ), // This is the official example. This won't take effect if you use `SECTION`.
   ),
   config-methods(
+    cover: utils.semi-transparent-cover.with(alpha: 50%), // Set the transparency for the `uncover`ed object.
     init: (self: none, body) => {
       set text(size: 24pt, font: ("Tinos", "Noto Serif CJK TC"))
       set list(marker: components.knob-marker(primary: self.colors.primary))
@@ -225,7 +226,20 @@
 
 ]
 
+== Uncover
 
+#slide(repeat: 3)[
+
+  - item to show
+
+  #uncover("2-")[
+    - item to show
+  ]
+
+  #uncover("3-")[
+    - item to show
+  ]
+]
 
 == 參考文獻
 
