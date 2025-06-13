@@ -73,7 +73,7 @@
 // Custom title slide
 // Modified from ~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ
 
-#let custom-title(config: (:), ..args) = touying-slide-wrapper(self => {
+#let custom-title(config: (:), title-block-width: auto, ..args) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config,
@@ -95,6 +95,7 @@
   let body = {
     show: std.align.with(center + top)
     block(
+      width: title-block-width,
       fill: self.colors.primary,
       inset: 1em,
       radius: 0.5em,
