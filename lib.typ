@@ -86,6 +86,7 @@
   title-block-width: auto,
   title-block-inset: 1em,
   title-block-below: auto,
+  title-font-size: 1.2em,
   ..args,
 ) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
@@ -116,10 +117,10 @@
       below: title-block-below,
       breakable: false,
       {
-        text(size: 1.2em, fill: self.colors.neutral-lightest, weight: "bold", info.title)
+        text(size: title-font-size, fill: self.colors.neutral-lightest, weight: "bold", info.title)
         if info.subtitle != none {
           parbreak()
-          text(size: 1.0em, fill: self.colors.neutral-lightest, weight: "bold", info.subtitle)
+          text(size: title-font-size * 0.8, fill: self.colors.neutral-lightest, weight: "bold", info.subtitle)
         }
       },
     )
