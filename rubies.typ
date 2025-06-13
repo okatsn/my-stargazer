@@ -4,8 +4,11 @@
 //
 // Ruby goes first, base text - second. Here is an example:
 // #ruby[ふりがな][振り仮名]
+//
+#let ruby-size = 0.6em
+
 #let rubytop = get-ruby(
-  size: 0.654em, // Ruby font size
+  size: ruby-size, // Ruby font size
   dy: 0pt, // Vertical offset of the ruby
   pos: top, // Ruby position (top or bottom)
   alignment: "center", // Ruby alignment ("center", "start", "between", "around")
@@ -13,7 +16,7 @@
   auto-spacing: true, // Automatically add necessary space around words
 )
 #let rubybtm = get-ruby(
-  size: 0.654em, // Ruby font size
+  size: ruby-size, // Ruby font size
   dy: -1pt, // Vertical offset of the ruby
   pos: bottom, // Ruby position (top or bottom)
   alignment: "center", // Ruby alignment ("center", "start", "between", "around")
