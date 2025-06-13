@@ -7,21 +7,30 @@
 //
 #let ruby-size = 0.6em
 
-#let rubytop = get-ruby(
-  size: ruby-size, // Ruby font size
-  dy: 0pt, // Vertical offset of the ruby
-  pos: top, // Ruby position (top or bottom)
-  alignment: "center", // Ruby alignment ("center", "start", "between", "around")
-  delimiter: "|", // The delimiter between words
-  auto-spacing: true, // Automatically add necessary space around words
-)
-#let rubybtm = get-ruby(
-  size: ruby-size, // Ruby font size
-  dy: -1pt, // Vertical offset of the ruby
-  pos: bottom, // Ruby position (top or bottom)
-  alignment: "center", // Ruby alignment ("center", "start", "between", "around")
-  delimiter: "|", // The delimiter between words
-  auto-spacing: true, // Automatically add necessary space around words
-)
+#let rubytop(rt, rb, size: ruby-size, alignment: "center") = {
+  let ruby-fn = get-ruby(
+    size: size,
+    dy: 0pt,
+    pos: top,
+    alignment: alignment,
+    delimiter: "|",
+    auto-spacing: true,
+  )
+  // get-ruby does not accept content arguments directly, so a two-step call is required
+  ruby-fn(rt, rb)
+}
+
+#let rubybtm(rt, rb, size: ruby-size, alignment: "center") = {
+  let ruby-fn = get-ruby(
+    size: size, // Ruby font size
+    dy: -1pt, // Vertical offset of the ruby
+    pos: bottom, // Ruby position (top or bottom)
+    alignment: alignment, // Ruby alignment ("center", "start", "between", "around")
+    delimiter: "|", // The delimiter between words
+    auto-spacing: true, // Automatically add necessary space around words
+  )
+  ruby-fn(rt, rb)
+}
+
 #let ruby = rubytop
 
