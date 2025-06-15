@@ -34,7 +34,13 @@
 
 // Custom outline slide
 // See themes/dewdrop.typ
-#let custom-outline(config: (:), title: utils.i18n-outline-title, ..args) = touying-slide-wrapper(self => {
+#let custom-outline(
+  config: (:),
+  title: utils.i18n-outline-title,
+  title-size: 1.4em,
+  text-size: 1em,
+  ..args,
+) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config-common(freeze-slide-counter: true),
@@ -59,12 +65,13 @@
           weight: "bold",
           utils.call-or-display(
             self,
-            text(size: 1.4em, title),
+            text(size: title-size, title),
           ),
         ),
       ), // The "Outline" shown on the top
       text(
         fill: self.colors.neutral-darker,
+        size: text-size,
         outline(
           title: none,
           indent: 1em,
