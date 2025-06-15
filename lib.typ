@@ -151,3 +151,17 @@
 })
 
 
+// Showing information about publication in a unified style.
+#let work-output(title, authors, year, journal, other-info) = [
+  #text(weight: "bold")[#title]
+  #linebreak()
+  #text(size: 0.9em, style: "italic")[
+    #authors
+    #if journal != none [, #journal]
+    , #year
+  ]
+  #if other-info != none [
+    #linebreak()
+    #text(size: 0.8em)[#other-info]
+  ]
+]
