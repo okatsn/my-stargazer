@@ -5,7 +5,7 @@
 Install my-stargazer
 
 ```bash
-pkgver="0.0.1"
+pkgver="0.0.2"
 target_path=~/.local/share/typst/packages/local/my-stargazer/$pkgver
 mkdir -p "$target_path"  
 git clone --depth 1 --branch $pkgver https://github.com/okatsn/my-stargazer.git "$target_path"
@@ -16,7 +16,7 @@ ln -s "$target_path" $(pwd)
 and 
 
 ```typst
-#import "@local/my-stargazer:0.0.1": *
+#import "@local/my-stargazer:0.0.2": *
 ```
 
 
