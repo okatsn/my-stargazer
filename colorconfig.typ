@@ -28,4 +28,5 @@
 #let right-arrow-a = text(fill: theme-color-configuration.colors.primary)[▶️]
 #let right-arrow-b = text(fill: theme-color-configuration.colors.secondary)[▶️]
 #let right-arrow-c = text(fill: theme-color-configuration.colors.tertiary)[▶️]
+#let right-arrow-k = text(fill: black)[▶️]
 #let right-arrow = right-arrow-a

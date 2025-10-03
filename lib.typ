@@ -15,7 +15,15 @@
 
 
 // Please refer the https://touying-typ.github.io/docs/0.3.2+/layout#page-columns for the composer option.
-#let new-section-plain(..bodies) = slide(title: none, composer: (auto, 1fr), ..bodies)
+#let new-section-plain(composer: (auto, 1fr), left, right) = slide(
+  title: none,
+  composer: composer,
+  [
+    #set text(fill: theme-color-configuration.colors.primary)
+    #left
+  ],
+  right,
+)
 
 
 // KEYNOTE: Use `SECTION[= Introduction][- brief notes]` instead of `= Introduction`
@@ -26,7 +34,13 @@
 
 // Custom outline slide
 // See themes/dewdrop.typ
-#let custom-outline(config: (:), title: utils.i18n-outline-title, ..args) = touying-slide-wrapper(self => {
+#let custom-outline(
+  config: (:),
+  title: utils.i18n-outline-title,
+  title-size: 1.4em,
+  text-size: 1em,
+  ..args,
+) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config-common(freeze-slide-counter: true),
@@ -51,12 +65,13 @@
           weight: "bold",
           utils.call-or-display(
             self,
-            text(size: 1.4em, title),
+            text(size: title-size, title),
           ),
         ),
       ), // The "Outline" shown on the top
       text(
         fill: self.colors.neutral-darker,
+        size: text-size,
         outline(
           title: none,
           indent: 1em,
@@ -73,7 +88,14 @@
 // Custom title slide
 // Modified from ~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ
 
-#let custom-title(config: (:), ..args) = touying-slide-wrapper(self => {
+#let custom-title(
+  config: (:),
+  title-block-width: auto,
+  title-block-inset: 1em,
+  title-block-below: auto,
+  title-font-size: 1.2em,
+  ..args,
+) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
     self,
     config,
@@ -95,15 +117,17 @@
   let body = {
     show: std.align.with(center + top)
     block(
+      width: title-block-width,
       fill: self.colors.primary,
-      inset: 1.5em,
+      inset: title-block-inset,
       radius: 0.5em,
+      below: title-block-below,
       breakable: false,
       {
-        text(size: 1.2em, fill: self.colors.neutral-lightest, weight: "bold", info.title)
+        text(size: title-font-size, fill: self.colors.neutral-lightest, weight: "bold", info.title)
         if info.subtitle != none {
           parbreak()
-          text(size: 1.0em, fill: self.colors.neutral-lightest, weight: "bold", info.subtitle)
+          text(size: title-font-size * 0.8, fill: self.colors.neutral-lightest, weight: "bold", info.subtitle)
         }
       },
     )
@@ -111,7 +135,7 @@
     grid(
       columns: (auto,) * calc.min(info.authors.len(), 3),
       column-gutter: 1em,
-      row-gutter: 1em,
+      row-gutter: 0.5em,
       ..info.authors.map(author => text(fill: black, author)),
     )
     // others
@@ -134,3 +158,17 @@
 })
 
 
+// Showing information about publication in a unified style.
+#let work-output(title, authors, year, journal, other-info) = [
+  #text(weight: "bold")[#title]
+  #linebreak()
+  #text(size: 0.9em, style: "italic")[
+    #authors
+    #if journal != none [, #journal]
+    , #year
+  ]
+  #if other-info != none [
+    #linebreak()
+    #text(size: 0.8em)[#other-info]
+  ]
+]

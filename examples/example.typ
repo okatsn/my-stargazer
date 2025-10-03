@@ -1,4 +1,5 @@
-#import "lib.typ": * // where touying and slide theme was imported.
+#import "../lib.typ": * // where touying and slide theme was imported.
+#import "config.typ"
 // CHECKPOINT:
 // - https://github.com/OrangeX4/typst-talk?tab=readme-ov-file
 // - [Touying Gallery](https://github.com/touying-typ/touying/wiki)
@@ -11,46 +12,19 @@
 // - https://touying-typ.github.io/docs/themes/dewdrop/#initialization
 
 
-// config.typ
-#let config = (
-  keywords_zh: (
-    [地磁場異常],
-    [地震前兆],
-    [資訊分析],
-  ),
-  keywords_en: (
-    [geomagnetic anomalies],
-    [earthquake precursor],
-    [informational analysis],
-  ),
-  title_zh: [
-    114年地震前兆觀測作業與分析技術相關研究— \
-    地震電磁前兆現象的機器學習與資訊理論分析
-  ],
-  short-title_zh: [地震電磁前兆現象的機器學習與資訊理論分析],
-  title_en: [Analysis of Electromagnetic Precursors Using Machine Learning and Information Theory],
-  project_code: [MOTC-CWA-114-E-05], // Not used yet.
-  presenting-date: "2025-06-11", // Set `none` to show datetime.today(). See self-info in src/slide.typ
-  authors: (
-    [陳建志],
-    [吳宗羲],
-  ),
-  department: [國立中央大學地球科學系],
-)
-
 
 
 
 #let self-info = config-info(
   // KEYNOTE: This is `self.info` in the `...theme.with()` that you can refer.
-  title: [#config.title_zh],
-  subtitle: [#config.title_en],
-  authors: config.authors,
-  author: [#config.authors.join(" ")],
-  short-title: [#config.short-title_zh], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
+  title: [#config.info.title_main],
+  subtitle: [#config.info.title_sub],
+  authors: config.info.authors,
+  author: [#config.info.authors.join(" ")],
+  short-title: [#config.info.title_short], // if there is no "short-title", "title" will be presented at the bottom-left footer (`footer-c`) of the stargaze slide.
   // date: datetime.today(),
-  date: if config.presenting-date == none { datetime.today() } else { config.presenting-date },
-  institution: [#config.department],
+  date: if config.info.presenting-date == none { datetime.today() } else { config.info.presenting-date },
+  institution: [#config.info.department],
   hello: [world], // You can define arbitrary information (in this example, use with `self.info.hello`)
 )
 
@@ -75,6 +49,7 @@
     ), // This is the official example. This won't take effect if you use `SECTION`.
   ),
   config-methods(
+    cover: utils.semi-transparent-cover.with(alpha: 50%), // Set the transparency for the `uncover`ed object.
     init: (self: none, body) => {
       set text(size: 24pt, font: ("Tinos", "Noto Serif CJK TC"))
       set list(marker: components.knob-marker(primary: self.colors.primary))
@@ -96,7 +71,7 @@
         // Set top-level headers.
         #text(
           size: 1.5em, // Larger size for emphasis
-          stroke: 0.3pt, // Very slight stroke to simulate "boldness"
+          stroke: 0pt, // You may assign slight stroke to simulate "boldness"
         )[#it]
       ]
       show heading.where(level: 2): it => [
@@ -251,7 +226,20 @@
 
 ]
 
+== Uncover
 
+#slide(repeat: 3)[
+
+  - item to show
+
+  #uncover("2-")[
+    - item to show
+  ]
+
+  #uncover("3-")[
+    - item to show
+  ]
+]
 
 == 參考文獻
 
