@@ -1,7 +1,7 @@
 {
     "workbench.colorCustomizations": {
-        "titleBar.activeBackground": "#9558b2",
-        "titleBar.inactiveBackground": "#9558b2",
+        "titleBar.activeBackground": "#18b2ea",
+        "titleBar.inactiveBackground": "#18b2ea",
     },
     // Quarto
     // These settings are critical for quarto to work correctly with jupyter of my-workspace/my-jupyter-with-julia. Please refer to .devcontainer/devcontainer.json therein.
