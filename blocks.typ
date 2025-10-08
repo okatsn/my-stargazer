@@ -55,7 +55,7 @@
 ) // an alternative foot-block function with the following settings to show top and bottom strokes.
 
 
-#let simple-rect(alignment: center, subtitle: none, rect-radius: 0.5em, body) = align(
+#let simple-rect(alignment: center, subtitle: none, rect-radius: 0.5em, rect-inset: 0% + 5pt, body) = align(
   alignment,
   grid(
     columns: 1fr,
@@ -68,6 +68,7 @@
     rect(
       fill: theme-color-configuration.colors.primary-dark,
       radius: rect-radius,
+      inset: rect-inset,
       [
         #set text(fill: theme-color-configuration.colors.primary-dark.lighten(90%))
         #body
