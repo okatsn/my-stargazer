@@ -79,3 +79,54 @@
 
 
 
+#let step-workflow(
+  title: [Analysis workflow],
+  ..args,
+) = {
+  // Define color cycle for step boxes
+  let step-colors = (
+    theme-color-configuration.colors.primary-dark,
+    theme-color-configuration.colors.secondary-dark,
+    theme-color-configuration.colors.tertiary-dark,
+  )
+
+  // Convert variadic args to array and ensure we have pairs
+  let items = args.pos()
+
+  // Build grid items array
+  let grid-items = ()
+  let i = 0
+  while i < items.len() {
+    let step-num = int(i / 2) + 1
+    let color-idx = calc.rem(int(i / 2), step-colors.len())
+    let step-color = step-colors.at(color-idx)
+
+    let step-label = items.at(i)
+    let step-desc = if i + 1 < items.len() { items.at(i + 1) } else { [] }
+
+    grid-items.push(
+      box(fill: step-color, inset: 0.5em, radius: 0.2em)[
+        #set text(fill: white, weight: "bold")
+        #step-label
+      ],
+    )
+    grid-items.push(step-desc)
+
+    i = i + 2
+  }
+
+  // Build the workflow grid
+  box(fill: rgb("#f0f0f0"), inset: 1em, radius: 0.3em)[
+    #set text(size: 0.9em)
+    #strong[#title]
+
+    #v(0.5em)
+
+    #grid(
+      columns: (auto, auto),
+      column-gutter: 1.5em,
+      row-gutter: 0.8em,
+      ..grid-items
+    )
+  ]
+}
