@@ -241,6 +241,32 @@
   ]
 ]
 
+== Step workflow
+
+#step-workflow(
+  title: [Analysis workflow],
+  [Step 1],
+  [
+    #let txt = [Compute QD/IQD on Taiwan catalog #linebreak() to produce stable trend]
+    #only("1")[#hla(txt)]
+    #only("2-")[#txt]
+  ],
+  [Step 2],
+  [
+    #let txt = [Construct time-lagged features #linebreak() from rainfall & solar flux]
+    #only("2")[#hlb(txt)]
+    #only("1,3-")[#txt]
+  ],
+  [Step 3],
+  [
+    #let txt = [ML validation with CART #linebreak() importance ranking]
+    #only("3")[#hlc(txt)]
+    #only("1-2,4")[#txt]
+  ],
+  [Key 4],
+  [description 4],
+),
+
 == 參考文獻
 
 #slide()[
