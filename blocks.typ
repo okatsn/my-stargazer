@@ -81,6 +81,9 @@
 
 #let step-workflow(
   title: [Analysis workflow],
+  grid-column-gutter: 1.5em,
+  grid-row-gutter: 0.8em,
+  grid-columns: (auto, auto),
   ..args,
 ) = {
   // Define color cycle for step boxes
@@ -107,7 +110,7 @@
     let step-desc = if i + 1 < items.len() { items.at(i + 1) } else { [] }
 
     grid-items.push(
-      box(fill: step-color, inset: 0.5em, radius: 0.2em)[
+      box(fill: step-color, inset: 0.5em, radius: 0.2em, width: 100%)[
         #set text(fill: white, weight: "bold")
         #step-label
       ],
@@ -125,9 +128,9 @@
     #v(0.5em)
 
     #grid(
-      columns: (auto, auto),
-      column-gutter: 1.5em,
-      row-gutter: 0.8em,
+      columns: grid-columns,
+      column-gutter: grid-column-gutter,
+      row-gutter: grid-row-gutter,
       ..grid-items
     )
   ]

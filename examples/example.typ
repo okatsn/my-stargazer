@@ -244,6 +244,7 @@
 == Step workflow
 
 #step-workflow(
+  grid-columns: (1fr, 6fr),
   title: [Analysis workflow],
   [Step 1],
   [
