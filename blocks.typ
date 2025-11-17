@@ -88,6 +88,8 @@
     theme-color-configuration.colors.primary-dark,
     theme-color-configuration.colors.secondary-dark,
     theme-color-configuration.colors.tertiary-dark,
+    theme-color-configuration.colors.quaternary-dark,
+    theme-color-configuration.colors.quinary-dark,
   )
 
   // Convert variadic args to array and ensure we have pairs
