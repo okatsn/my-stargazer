@@ -17,9 +17,9 @@
   highlight-text-scale: 1.15,
   highlight-spacing-scale: 1.15,
   // Nested item parameters
-  nested-indent: 0.4, // Horizontal indent for nested items
+  nested-indent: 0.7, // Horizontal indent for nested items
   nested-dot-scale: 0.8, // Scale factor for nested item dots
-  nested-spacing-scale: 0.7, // Scale factor for spacing of nested items
+  nested-spacing-scale: 0.8, // Scale factor for spacing of nested items
 ) = {
   canvas(
     length: canvas-length,
