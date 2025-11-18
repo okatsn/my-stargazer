@@ -16,6 +16,10 @@
   highlight-dot-scale: 1.3,
   highlight-text-scale: 1.15,
   highlight-spacing-scale: 1.15,
+  // Nested item parameters
+  nested-indent: 0.4, // Horizontal indent for nested items
+  nested-dot-scale: 0.8, // Scale factor for nested item dots
+  nested-spacing-scale: 0.7, // Scale factor for spacing of nested items
 ) = {
   canvas(
     length: canvas-length,
@@ -38,13 +42,35 @@
       let title-bottom = if title != none { 0.7 } else { 0 }
       let start-y = title-bottom
 
+      // Helper function to flatten nested items for spacing calculation
+      let flatten-items(items) = {
+        let flat = ()
+        for item in items {
+          if type(item) == dictionary and "content" in item and "children" in item {
+            flat.push((content: item.content, nested: false))
+            for child in item.children {
+              flat.push((content: child, nested: true))
+            }
+          } else {
+            flat.push((content: item, nested: false))
+          }
+        }
+        return flat
+      }
+
+      let flat-items = flatten-items(items)
+
       // Calculate total line length with dynamic spacing for highlighted items
       let total-spacing = 0
-      for i in range(items.len()) {
+      for i in range(flat-items.len()) {
         if i == 0 {
           total-spacing += 0.5 // Initial offset
         } else {
           let current-spacing = item-spacing
+          // Nested items have reduced spacing
+          if flat-items.at(i).nested {
+            current-spacing *= nested-spacing-scale
+          }
           // Add extra spacing around highlighted item
           if highlight-at != none and (i == highlight-at or i == highlight-at + 1) {
             current-spacing *= highlight-spacing-scale
@@ -76,13 +102,18 @@
 
       // Draw dots and text for each item with dynamic positioning
       let current-y = start-y - 0.5
-      for (i, item) in items.enumerate() {
+      for (i, flat-item) in flat-items.enumerate() {
         // Check if this item should be highlighted
         let is-highlighted = highlight-at != none and i == highlight-at
+        let is-nested = flat-item.nested
 
         // Calculate spacing for this item
         if i > 0 {
           let spacing = item-spacing
+          // Nested items have reduced spacing
+          if is-nested {
+            spacing *= nested-spacing-scale
+          }
           if highlight-at != none and (i == highlight-at or i == highlight-at + 1) {
             spacing *= highlight-spacing-scale
           }
@@ -91,8 +122,9 @@
 
         let y-pos = current-y
 
-        // Determine sizes based on highlight status
-        let current-dot-size = if is-highlighted { dot-size * highlight-dot-scale } else { dot-size }
+        // Determine sizes based on highlight status and nesting
+        let base-dot-size = if is-nested { dot-size * nested-dot-scale } else { dot-size }
+        let current-dot-size = if is-highlighted { base-dot-size * highlight-dot-scale } else { base-dot-size }
         let current-font-size = if is-highlighted { font-size * highlight-text-scale } else { font-size }
         let current-connecting-thickness = if is-highlighted {
           connecting-line-thickness * highlight-dot-scale
@@ -100,26 +132,33 @@
           connecting-line-thickness
         }
 
+        // Calculate horizontal offset for nested items
+        let x-offset = if is-nested { nested-indent } else { 0 }
+        let dot-x = x-offset
+        let connector-start-x = dot-x + current-dot-size + 0.05
+        let connector-end-x = x-offset + 0.35
+        let text-x = x-offset + 0.5
+
         // Add text to the right of the dot
         content(
-          (0.5, y-pos),
+          (text-x, y-pos),
           {
             set text(size: current-font-size, fill: text-color, weight: if is-highlighted { "bold" } else { "regular" })
             set align(left)
-            item
+            flat-item.content
           },
           anchor: "west",
         )
 
         // Add connecting lines from dots to text - now with scaled thickness
         line(
-          (current-dot-size + 0.05, y-pos),
-          (0.35, y-pos),
+          (connector-start-x, y-pos),
+          (connector-end-x, y-pos),
           stroke: (paint: gray, thickness: current-connecting-thickness),
         )
 
         // Draw the dot
-        circle((0, y-pos), radius: current-dot-size, fill: dot-color, stroke: none)
+        circle((dot-x, y-pos), radius: current-dot-size, fill: dot-color, stroke: none)
       }
     },
   )

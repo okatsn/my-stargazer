@@ -251,6 +251,23 @@
 
 ]
 
+== Nested Milestone
+
+#roadmap-diagram(
+  (
+    text()[Step 1: Regular item],
+    (
+      content: text()[Step 2: Parent item],
+      children: (
+        text(size: 0.8em)[Sub-step 2a],
+        text(size: 0.8em)[Sub-step 2b],
+      ),
+    ),
+    text()[Step 3: Another regular item],
+  ),
+  title: [Project Roadmap],
+)
+
 == Info-box and stacked simple-rect
 
 #slide[
