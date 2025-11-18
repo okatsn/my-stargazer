@@ -98,73 +98,79 @@
 
 #set figure(numbering: none)
 
-// KEYNOTE: Guideline for this talk (by CCC in meeting 0611)
-// - 本次報告敘事要注意動機目的未來方向
-// - 人家沒時間了解細節
-// - 三分鐘短講是很好的訓練
 
 #custom-title()
 
 #custom-outline()
 
 // Introduction
-#SECTION[= 背景與研究概述][
-  - 文獻回顧
-  - 沿革
+// A transition page with:
+#SECTION[
+  // Left: Section title
+  = Timeline and Milestone
+][
+  // Right: listed items (headers of subsections in this section)
+  - Timeline
+  - Milestone
 ]
+
 
 == Timeline
 
 #slide[
   #set text(size: 0.6em)
   #let evtbxwidth = 5cm
+  // This is a horizontal timeline diagram where:
+  // - x ticks: the timestamps in `year`
+  // - an event points to a specific time point, showing a title adhere to a specific `year`.
+  // - an event span is a rectangular that spans from `start-point` to `end-point` in `year` with transparent background color. Showing a range of a "phase" or "stage".
   #timeline(
     interval: 1,
     startyear: 2016,
     endyear: 2025,
     events: (
       event(
-        title: "MagTIP 演算法",
+        title: "Initial Research Framework",
         year: 2019,
       ),
       event(
-        title: "MagTIP 機率預報模式",
+        title: "Pilot Study Completion",
         year: 2020,
       ),
       event(
-        title: "多變量 MagTIP 演算法",
+        title: "Algorithm Development Phase",
         year: 2021,
       ),
       event(
-        title: "GEMS-MagTIP 系統整合",
+        title: "System Integration",
         year: 2022,
       ),
       event(
-        title: "濾波頻段影響研究",
+        title: "Parameter Optimization Study",
         year: 2023,
       ),
       event(
-        title: "整合資訊理論",
+        title: "Advanced Method Integration",
         year: 2024,
       ),
     ),
     eventspans: (
       eventspan(
-        title: strong[GEMSTIP 演算法],
+        title: strong[Foundation Phase],
         start-point: 2016,
         end-point: 2018,
         color: theme-color-configuration.colors.primary,
         box-width: evtbxwidth,
       ),
       eventspan(
-        title: strong[MagTIP 發展期],
+        title: strong[Development Phase],
         start-point: 2019,
         end-point: 2022,
         color: theme-color-configuration.colors.quaternary-light,
         box-width: evtbxwidth,
       ),
       eventspan(
-        title: strong[系統整合與分析期],
+        title: strong[Integration and Refinement Phase],
         start-point: 2022,
         end-point: 2025,
         color: theme-color-configuration.colors.secondary,
@@ -178,34 +184,99 @@
 
 ]
 
-== Roadmap
 
+== Milestone
 
-#let items = (
-  text()[缺失值與異常值的處理],
-  text()[自相關分析：ACF/PACF 分析時間相依結構],
-  text()[識別地電磁指標樣態 #right-arrow-c #hlc[特徵工程指引]],
-  text(fill: gray)[發展降維技術解決特徵共線性問題],
-)
+// This is a slide split into two panel, left and right.
+// `composer` defines the aspect ratio of left and right panel.
+#slide(composer: (2fr, 1.4fr))[
+  // left panel:
+  #set text(size: 0.7em)
+  #grid(
+    columns: (1fr, 0.8fr),
+    gutter: 1em,
+    [
+      *Approach A limitations*
+      - Limited scope of single point analysis
+      - Uneven spatial distribution
+      - Computational constraints
+      - Coverage gaps in dataset
+    ],
+    [
+      *Approach B advantages*
+      - Integration of multiple data sources
+      - Spatially uniform analysis
+      - Fine-grained resolution
+    ],
+  )
+
+  #simple-rect(subtitle: [A supplementary description for the small information box])[
+    #set text(weight: "bold", size: 1.1em)
+    The content of information
+  ]
+
+][
+  // right panel:
+  #set text(size: 0.7em)
+
+  #let items = (
+    text()[Data preprocessing and cleaning],
+    text()[Statistical analysis],
+    text()[Feature extraction #right-arrow-c #hlc[Feature engineering]],
+    text(fill: gray)[Dimensionality reduction],
+  )
+  #let items_next = (
+    text(fill: gray)[Model evaluation and validation],
+    text(fill: gray, weight: "black")[Advanced algorithm integration],
+    text(fill: gray)[Performance optimization],
+    text(fill: gray, weight: "black")[System refinement and deployment],
+  )
+
+  // `roadmap-diagram` is a vertical timeline-like diagram.
+  // - takes `items` as an array of `text`.
+  // - you can assign a `title` for this diagram
+  // - use `highlight-at` to make the text of a specific item `strong`.
+  #roadmap-diagram(
+    items,
+    highlight-at: items.len() - 2,
+    title: [Current work \ #text(size: 0.7em)[Detailed subtitle describing current research focus]
+    ],
+  )
+
+  #roadmap-diagram(
+    items_next,
+    line-color: theme-color-configuration.colors.primary-light.lighten(50%),
+    title: [Future outlooks],
+  )
+
+]
+
+== Nested Milestone
 
 #roadmap-diagram(
-  items,
-  highlight-at: items.len() - 2,
-  title: [本期工作內容 \ #text(size: 0.7em)[自相關分析：邁向TIPTree的前置處理]
-  ],
+  (
+    text()[Step 1: Regular item],
+    (
+      content: text()[Step 2: Parent item],
+      children: (
+        text(size: 0.8em)[Sub-step 2a],
+        text(size: 0.8em)[Sub-step 2b],
+      ),
+    ),
+    text()[Step 3: Another regular item],
+  ),
+  title: [Project Roadmap],
 )
-
 
 == Info-box and stacked simple-rect
 
 #slide[
   #set text(size: 0.85em)
   #infobox(
-    title: [地磁站的資訊理論指標所揭示的時間相依結構],
+    title: [The title for the major information box],
     type: "danger",
   )[
-    - ACF/PACF 衰減快 #right-arrow-c #hlc[穩態]
-    - ACF/PACF 在 lag 27 出現超越95%信賴區間的「丘狀」特徵 #linebreak() #right-arrow-c #hlc[$tilde 27$ 天週期的季節性變化]
+    - Key finding 1 #right-arrow-c #hlc[brief comment for this finding]
   ]
 
   #set align(center)
@@ -214,77 +285,79 @@
 
   #stack(
     simple-rect(alignment: left)[
-      🌔 月球的軌道(公轉)週期 $tilde 27.3$ days
-      @guoqing273day136dayAtmospheric2005
+      📊 Data source A: Description of first data type and its characteristics
     ],
     simple-rect(alignment: left)[
-      ☀️ 太陽的自轉週期 $tilde 27$ days
-      @bartelsTwentysevenDayRecurrences1934
-      @beckComparisonDifferentialRotation2000
+      📈 Data source B: Description of second data type and its properties
     ],
   )
 
+]
+
+== Step workflow
+
+#slide[
+  #step-workflow(
+    grid-columns: (1fr, 6fr),
+    title: [Analysis workflow],
+    [Step 1],
+    [
+      #let txt = [Preprocess data #linebreak() to ensure quality and consistency]
+      #only("1")[#hla(txt)]
+      #only("2-")[#txt]
+    ],
+    [Step 2],
+    [
+      #let txt = [Extract and construct features #linebreak() from multiple data sources]
+      #only("2")[#hlb(txt)]
+      #only("1,3-")[#txt]
+    ],
+    [Step 3],
+    [
+      #let txt = [Apply machine learning models #linebreak() with validation and ranking]
+      #only("3")[#hlc(txt)]
+      #only("1-2,4")[#txt]
+    ],
+    [Step 4],
+    [Evaluate model performance and metrics],
+    [Step 5],
+    [Interpret results and draw conclusions],
+  )
 ]
 
 == Uncover
 
 #slide(repeat: 3)[
 
-  - item to show
+  - First point to introduce
 
   #uncover("2-")[
-    - item to show
+    - Second point revealed progressively
   ]
 
   #uncover("3-")[
-    - item to show
+    - Third point revealed last
   ]
 ]
 
-== Step workflow
 
-#step-workflow(
-  grid-columns: (1fr, 6fr),
-  title: [Analysis workflow],
-  [Step 1],
-  [
-    #let txt = [Compute QD/IQD on Taiwan catalog #linebreak() to produce stable trend]
-    #only("1")[#hla(txt)]
-    #only("2-")[#txt]
-  ],
-  [Step 2],
-  [
-    #let txt = [Construct time-lagged features #linebreak() from rainfall & solar flux]
-    #only("2")[#hlb(txt)]
-    #only("1,3-")[#txt]
-  ],
-  [Step 3],
-  [
-    #let txt = [ML validation with CART #linebreak() importance ranking]
-    #only("3")[#hlc(txt)]
-    #only("1-2,4")[#txt]
-  ],
-  [Key 4],
-  [description 4],
-  [Key 5],
-  [description 5],
-),
-
-== 參考文獻
+== References
 
 #slide()[
 
   #set page(columns: 2)
-  #set text(size: 0.7em)
+  #set text(size: 0.4em)
   #bibliography("example.bib", style: "springer-basic", title: none)
 
 ]
 
 
 
+
 #show: appendix
 
-#SECTION[= 附錄][
+#SECTION[= Appendices][
 
 
 ]
+
