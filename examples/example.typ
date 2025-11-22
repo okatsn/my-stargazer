@@ -277,7 +277,9 @@
     type: "danger",
   )[
     - Key finding 1 #right-arrow-c #hlc[brief comment for this finding]
+
   ]
+
 
   #set align(center)
 
@@ -292,7 +294,35 @@
     ],
   )
 
+
+
 ]
+
+== Ruled block
+
+#slide[
+  #set text(size: 0.85em)
+  #infobox(
+    title: [The title for the major information box],
+    type: "danger",
+  )[
+    - Hello
+    - World
+    - Foobar
+
+
+    #block-ruled()[Ruled block for anywhere]
+  ]
+
+
+  #set align(center)
+
+
+
+  #foot-block-ruled()[Ruled block aligned to bottom]
+
+]
+
 
 == Step workflow
 
@@ -324,6 +354,7 @@
     [Interpret results and draw conclusions],
   )
 ]
+
 
 == Uncover
 

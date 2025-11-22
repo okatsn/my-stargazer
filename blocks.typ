@@ -54,6 +54,20 @@
   txt,
 ) // an alternative foot-block function with the following settings to show top and bottom strokes.
 
+#let block-ruled(
+  width: 100%,
+  inset: 5pt,
+  stroke: (
+    top: 0.3pt + black,
+    bottom: 0.3pt + black,
+  ),
+  txt,
+) = block(
+  width: width,
+  inset: inset,
+  stroke: stroke,
+  txt,
+)
 
 #let simple-rect(alignment: center, subtitle: none, rect-radius: 0.5em, rect-inset: 0% + 5pt, body) = align(
   alignment,
