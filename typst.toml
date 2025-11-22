@@ -1,6 +1,6 @@
 [package]
 name = "my-stargazer"
-version = "0.0.6"
+version = "0.0.7"
 entrypoint = "lib.typ"
 authors = ["okatsn@gmail.com"]
 license = "MIT"
