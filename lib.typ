@@ -202,9 +202,6 @@
   logo: none,
 ) = (
   context {
-    // // DEBUG: Show that we're being called
-    // let debug-indicator = block(fill: red, width: 2em, height: 0.5em, [])
-
     let body() = {
       let sections = query(heading.where(level: 1))
       if sections.len() == 0 {
@@ -264,8 +261,6 @@
         columns: (1fr, auto),
         rows: 1.8em,
         gutter: 0em,
-        // debug-indicator,
-        // Show red indicator if custom nav is called
         components.cell(
           fill: background,
           body(),
