@@ -7,7 +7,7 @@
 #import "rubies.typ": *
 #import "roadmap.typ": *
 #import "@preview/cetz:0.3.4": canvas, draw
-#import "@preview/fletcher:0.5.7": diagram, node, edge
+#import "@preview/fletcher:0.5.7": diagram, edge, node
 #import "colorconfig.typ": *
 #import "timeline.typ": *
 
@@ -260,7 +260,8 @@
         columns: (1fr, auto),
         rows: 1.8em,
         gutter: 0em,
-        cell(
+        // touying.components.cell
+        components.cell(
           fill: background,
           body(),
         ),
