@@ -7,7 +7,7 @@
 #import "rubies.typ": *
 #import "roadmap.typ": *
 #import "@preview/cetz:0.3.4": canvas, draw
-#import "@preview/fletcher:0.5.7": diagram, node, edge
+#import "@preview/fletcher:0.5.7": diagram, edge, node
 #import "colorconfig.typ": *
 #import "timeline.typ": *
 
@@ -172,3 +172,101 @@
     #text(size: 0.8em)[#other-info]
   ]
 ]
+
+
+/// Custom navigation with CJK support
+///
+/// Instead of relying on label-based short-heading conversion,
+/// this allows direct heading body display or custom mappings.
+///
+/// - self (none): The self context
+/// - short-heading (boolean): Whether to use short headings. Default is `true`.
+/// - heading-map (dictionary): Optional mapping from full heading text to short text.
+///   Example: `(
+///     "背景與研究概述": "背景",
+///     "資料與方法": "方法",
+///   )`
+/// - primary (color): Color of current section. Default is `white`.
+/// - secondary (color): Color of other sections. Default is `gray`.
+/// - background (color): Background color. Default is `black`.
+/// - logo (none): Logo content. Default is `none`.
+///
+/// -> content
+#let my-simple-navigation(
+  self: none,
+  short-heading: true,
+  heading-map: (:),
+  primary: white,
+  secondary: gray,
+  background: black,
+  logo: none,
+) = (
+  context {
+    let body() = {
+      let sections = query(heading.where(level: 1))
+      if sections.len() == 0 {
+        return
+      }
+      let current-page = here().page()
+      set text(size: 0.5em)
+
+      for (section, next-section) in sections.zip(sections.slice(1) + (none,)) {
+        set text(fill: if section.location().page() <= current-page
+          and (
+            next-section == none or current-page < next-section.location().page()
+          ) {
+          primary
+        } else {
+          secondary
+        })
+
+        // Custom heading display logic
+        let heading-text = {
+          // First try custom heading map by checking each key
+          let matched-short = none
+          for (long-text, short-text) in heading-map {
+            // Match by checking if section body contains the long text
+            let body-str = repr(section.body)
+            if body-str.contains(long-text) {
+              matched-short = short-text
+              break
+            }
+          }
+
+          if matched-short != none {
+            // Use custom short form from map
+            matched-short
+          } else if short-heading and section.has("label") {
+            // Fallback to label-based short heading
+            utils.short-heading(self: self, section)
+          } else {
+            // Use full body
+            section.body
+          }
+        }
+
+        box(inset: 0.5em)[#link(
+          section.location(),
+          heading-text,
+        )<touying-link>]
+      }
+    }
+
+    block(
+      fill: background,
+      inset: 0pt,
+      outset: 0pt,
+      grid(
+        align: center + horizon,
+        columns: (1fr, auto),
+        rows: 1.8em,
+        gutter: 0em,
+        components.cell(
+          fill: background,
+          body(),
+        ),
+        block(fill: background, inset: 4pt, height: 100%, text(fill: primary, logo)),
+      ),
+    )
+  }
+)
