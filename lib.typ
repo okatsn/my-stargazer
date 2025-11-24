@@ -172,3 +172,100 @@
     #text(size: 0.8em)[#other-info]
   ]
 ]
+
+
+/// Custom navigation with CJK support
+///
+/// Instead of relying on label-based short-heading conversion,
+/// this allows direct heading body display or custom mappings.
+///
+/// - self (none): The self context
+/// - short-heading (boolean): Whether to use short headings. Default is `true`.
+/// - heading-map (dictionary): Optional mapping from full heading text to short text.
+///   Example: `(
+///     "背景與研究概述": "背景",
+///     "資料與方法": "方法",
+///   )`
+/// - primary (color): Color of current section. Default is `white`.
+/// - secondary (color): Color of other sections. Default is `gray`.
+/// - background (color): Background color. Default is `black`.
+/// - logo (none): Logo content. Default is `none`.
+///
+/// -> content
+#let my-simple-navigation(
+  self: none,
+  short-heading: true,
+  heading-map: (:),
+  primary: white,
+  secondary: gray,
+  background: black,
+  logo: none,
+) = (
+  context {
+    let body() = {
+      let sections = query(heading.where(level: 1))
+      if sections.len() == 0 {
+        return
+      }
+      let current-page = here().page()
+      set text(size: 0.5em)
+
+      for (section, next-section) in sections.zip(sections.slice(1) + (none,)) {
+        set text(fill: if section.location().page() <= current-page
+          and (
+            next-section == none or current-page < next-section.location().page()
+          ) {
+          primary
+        } else {
+          secondary
+        })
+
+        // Custom heading display logic
+        let heading-text = if short-heading {
+          // Try to get from custom map first
+          let full-text = if type(section.body) == str {
+            section.body
+          } else {
+            // Extract plain text from content
+            repr(section.body)
+          }
+
+          // Use custom map if available, otherwise use full heading
+          if full-text in heading-map {
+            heading-map.at(full-text)
+          } else if section.has("label") {
+            // Fallback to label-based short heading
+            utils.short-heading(self: self, section)
+          } else {
+            // Just use the body as-is
+            section.body
+          }
+        } else {
+          section.body
+        }
+
+        box(inset: 0.5em)[#link(
+          section.location(),
+          heading-text,
+        )<touying-link>]
+      }
+    }
+
+    block(
+      fill: background,
+      inset: 0pt,
+      outset: 0pt,
+      grid(
+        align: center + horizon,
+        columns: (1fr, auto),
+        rows: 1.8em,
+        gutter: 0em,
+        cell(
+          fill: background,
+          body(),
+        ),
+        block(fill: background, inset: 4pt, height: 100%, text(fill: primary, logo)),
+      ),
+    )
+  }
+)
