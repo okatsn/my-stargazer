@@ -202,6 +202,9 @@
   logo: none,
 ) = (
   context {
+    // // DEBUG: Show that we're being called
+    // let debug-indicator = block(fill: red, width: 2em, height: 0.5em, [])
+
     let body() = {
       let sections = query(heading.where(level: 1))
       if sections.len() == 0 {
@@ -221,27 +224,28 @@
         })
 
         // Custom heading display logic
-        let heading-text = if short-heading {
-          // Try to get from custom map first
-          let full-text = if type(section.body) == str {
-            section.body
-          } else {
-            // Extract plain text from content
-            repr(section.body)
+        let heading-text = {
+          // First try custom heading map by checking each key
+          let matched-short = none
+          for (long-text, short-text) in heading-map {
+            // Match by checking if section body contains the long text
+            let body-str = repr(section.body)
+            if body-str.contains(long-text) {
+              matched-short = short-text
+              break
+            }
           }
 
-          // Use custom map if available, otherwise use full heading
-          if full-text in heading-map {
-            heading-map.at(full-text)
-          } else if section.has("label") {
+          if matched-short != none {
+            // Use custom short form from map
+            matched-short
+          } else if short-heading and section.has("label") {
             // Fallback to label-based short heading
             utils.short-heading(self: self, section)
           } else {
-            // Just use the body as-is
+            // Use full body
             section.body
           }
-        } else {
-          section.body
         }
 
         box(inset: 0.5em)[#link(
@@ -260,7 +264,8 @@
         columns: (1fr, auto),
         rows: 1.8em,
         gutter: 0em,
-        // touying.components.cell
+        // debug-indicator,
+        // Show red indicator if custom nav is called
         components.cell(
           fill: background,
           body(),
