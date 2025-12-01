@@ -15,7 +15,7 @@
 #let my-heading-map = (
   // Map from full heading text to short text
   "背景與研究概述": "背景",
-  "資料與方法": "方法",
+  "資料與方法": ruby-nav[資料與方法][回歸與分析方法],
   // "結果與討論": "結果",
   "結論與未來展望": "結論",
   "附錄": "附錄",
