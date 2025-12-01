@@ -34,3 +34,10 @@
 
 #let ruby = rubytop
 
+// Specialized function for navigation bar.
+#let ruby-nav(topstr, btmstr) = {
+  // Note: rubby package doesn't support independent styling of annotation vs base
+  // This applies bold to the entire ruby output (both annotation and base)
+  set text(weight: "black") // , style: "italic" results in no effect.
+  ruby(topstr, btmstr)
+}
