@@ -144,4 +144,4 @@ In your `slide-fin.typ`, add:
 
 - Example file: `EXAMPLE-custom-navigation.typ`
 - Custom component: `src/my-navigation.typ`
-- Original implementation: `~/.cache/typst/packages/preview/touying/0.6.1/src/components.typ`
+- Original implementation: `~/.cache/typst/packages/preview/touying/0.7.1/src/components.typ`

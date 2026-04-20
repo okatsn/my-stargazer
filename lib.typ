@@ -1,5 +1,5 @@
 // [Multi-File Architecture](https://touying-typ.github.io/docs/multi-file)
-#import "@preview/touying:0.6.1": *
+#import "@preview/touying:0.7.1": *
 #import themes.stargazer: *
 #import "@preview/numbly:0.1.0": numbly
 #import "@preview/mitex:0.2.5": *
@@ -86,7 +86,7 @@
 
 
 // Custom title slide
-// Modified from ~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ
+// Modified from ~/.cache/typst/packages/preview/touying/0.7.1/themes/stargazer.typ
 
 #let custom-title(
   config: (:),

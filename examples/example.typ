@@ -38,10 +38,10 @@
   footer-a: none, // by default it takes `info.author`
   // Explicitly list all configuration available.
   // KEYNOTE:
-  // - Click on `stargazer-theme` to open `~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ`
+  // - Click on `stargazer-theme` to open `~/.cache/typst/packages/preview/touying/0.7.1/themes/stargazer.typ`
   // - Also see https://touying-typ.github.io/docs/build-your-own-theme
   config-common(
-    // Go to `default-config` in ~/.cache/typst/packages/preview/touying/0.6.1/src/configs.typ to see the full list of what you can set.
+    // Go to `default-config` in ~/.cache/typst/packages/preview/touying/0.7.1/src/configs.typ to see the full list of what you can set.
     slide-fn: slide,
     show-strong-with-alert: false, // strong (`*xxx*`) will set to primary color when `true`.
     new-section-slide-fn: new-section-slide.with(
