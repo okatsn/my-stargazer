@@ -38,10 +38,10 @@
   footer-a: none, // by default it takes `info.author`
   // Explicitly list all configuration available.
   // KEYNOTE:
-  // - Click on `stargazer-theme` to open `~/.cache/typst/packages/preview/touying/0.6.1/themes/stargazer.typ`
+  // - Click on `stargazer-theme` to open `~/.cache/typst/packages/preview/touying/0.7.1/themes/stargazer.typ`
   // - Also see https://touying-typ.github.io/docs/build-your-own-theme
   config-common(
-    // Go to `default-config` in ~/.cache/typst/packages/preview/touying/0.6.1/src/configs.typ to see the full list of what you can set.
+    // Go to `default-config` in ~/.cache/typst/packages/preview/touying/0.7.1/src/configs.typ to see the full list of what you can set.
     slide-fn: slide,
     show-strong-with-alert: false, // strong (`*xxx*`) will set to primary color when `true`.
     new-section-slide-fn: new-section-slide.with(
@@ -49,7 +49,8 @@
     ), // This is the official example. This won't take effect if you use `SECTION`.
   ),
   config-methods(
-    cover: utils.semi-transparent-cover.with(alpha: 50%), // Set the transparency for the `uncover`ed object.
+    cover: utils.method-wrapper(hide),
+    // `cover: utils.semi-transparent-cover.with(alpha: 50%)` aims to set the transparency for the `uncover`ed object, however, semi-transparent-cover is broken in touying 0.7.1 + typst 0.13.1 (is-block references `title` which is not a global in typst 0.13)
     init: (self: none, body) => {
       set text(size: 24pt, font: ("Tinos", "Noto Serif CJK TC"))
       set list(marker: components.knob-marker(primary: self.colors.primary))
@@ -101,7 +102,7 @@
 
 #custom-title()
 
-#custom-outline()
+#custom-outline(exclude: ("Appendices",))
 
 // Introduction
 // A transition page with:
@@ -389,6 +390,6 @@
 
 #SECTION[= Appendices][
 
-
+  - Noted that the Appendices is excluded from the outline. See `custom-outline`
 ]
 
