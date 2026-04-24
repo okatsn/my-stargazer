@@ -39,6 +39,7 @@
   title: utils.i18n-outline-title,
   title-size: 1.4em,
   text-size: 1em,
+  exclude: (), // Strings whose text matches any entry in this list (and their sub-headings) are hidden from the outline. Example: exclude: ("Appendices",)
   ..args,
 ) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
@@ -69,16 +70,58 @@
           ),
         ),
       ), // The "Outline" shown on the top
-      text(
-        fill: self.colors.neutral-darker,
-        size: text-size,
-        outline(
-          title: none,
-          indent: 1em,
-          depth: self.slide-level,
-          ..args,
-        ), // self.slide-level is heading of `level: 2`.
-      ),
+      {
+        // Exclude the headings if contained in the list of `exclude` .
+        let excluded = exclude
+        show outline.entry: it => context {
+          let body-repr = repr(it.element.body)
+          // Hide directly excluded headings, or sub-headings that fall under an excluded heading's page range.
+          let should-hide = {
+            if excluded.any(excl => body-repr.contains(excl)) {
+              true
+            } else if excluded.len() > 0 {
+              let entry-page = it.element.location().page()
+              let all-headings = query(heading)
+              all-headings
+                .enumerate()
+                .any(pair => {
+                  let (idx, h) = pair
+                  if not excluded.any(excl => repr(h.body).contains(excl)) {
+                    false
+                  } else {
+                    let excl-level = h.level
+                    let excl-page = h.location().page()
+                    if excl-page > entry-page {
+                      false
+                    } else {
+                      // Find next heading at the same or shallower level to bound the excluded section
+                      let next-boundary = all-headings.slice(idx + 1).filter(h2 => h2.level <= excl-level)
+                      let next-page = if next-boundary.len() > 0 {
+                        next-boundary.at(0).location().page()
+                      } else {
+                        calc.inf
+                      }
+                      entry-page < next-page
+                    }
+                  }
+                })
+            } else {
+              false
+            }
+          }
+          if should-hide { none } else { it }
+        }
+        text(
+          fill: self.colors.neutral-darker,
+          size: text-size,
+          outline(
+            title: none,
+            indent: 1em,
+            depth: self.slide-level,
+            ..args,
+          ), // self.slide-level is heading of `level: 2`.
+        )
+      },
     ),
   )
 })

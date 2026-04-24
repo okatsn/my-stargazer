@@ -49,7 +49,8 @@
     ), // This is the official example. This won't take effect if you use `SECTION`.
   ),
   config-methods(
-    cover: utils.semi-transparent-cover.with(alpha: 50%), // Set the transparency for the `uncover`ed object.
+    cover: utils.method-wrapper(hide),
+    // `cover: utils.semi-transparent-cover.with(alpha: 50%)` aims to set the transparency for the `uncover`ed object, however, semi-transparent-cover is broken in touying 0.7.1 + typst 0.13.1 (is-block references `title` which is not a global in typst 0.13)
     init: (self: none, body) => {
       set text(size: 24pt, font: ("Tinos", "Noto Serif CJK TC"))
       set list(marker: components.knob-marker(primary: self.colors.primary))
@@ -101,7 +102,7 @@
 
 #custom-title()
 
-#custom-outline()
+#custom-outline(exclude: ("Appendices",))
 
 // Introduction
 // A transition page with:
@@ -389,6 +390,6 @@
 
 #SECTION[= Appendices][
 
-
+  - Noted that the Appendices is excluded from the outline. See `custom-outline`
 ]
 
