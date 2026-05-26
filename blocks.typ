@@ -8,7 +8,7 @@
       rgb("#e67e22")
     } else if (
       type == "danger"
-    ) { rgb("#cb4335") } else if type == "note" { rgb("#abb2b9") } // cornflower blue
+    ) { rgb("#cb4335") } else if type == "note" { rgb("#899096") } // cornflower blue
     else { blue } // default
   }
   showybox(

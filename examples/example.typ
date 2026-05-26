@@ -275,7 +275,7 @@
   #set text(size: 0.85em)
   #infobox(
     title: [The title for the major information box],
-    type: "danger",
+    type: "note",
   )[
     - Key finding 1 #right-arrow-c #hlc[brief comment for this finding]
 
