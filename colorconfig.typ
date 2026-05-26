@@ -21,21 +21,37 @@
   neutral-darkest: rgb("#000000"),
 )
 
-#let hla(x) = strong(text(fill: theme-color-configuration.colors.primary)[#x])
-#let hlb(x) = strong(text(fill: theme-color-configuration.colors.secondary)[#x])
-#let hlc(x) = strong(text(fill: theme-color-configuration.colors.tertiary)[#x])
-#let hlad(x) = strong(text(fill: theme-color-configuration.colors.primary-dark)[#x])
-#let hlbd(x) = strong(text(fill: theme-color-configuration.colors.secondary-dark)[#x])
-#let hlcd(x) = strong(text(fill: theme-color-configuration.colors.tertiary-dark)[#x])
-#let hle(x) = strong(text(fill: theme-color-configuration.colors.quinary)[#x])
-#let hled(x) = strong(text(fill: theme-color-configuration.colors.quinary-dark)[#x])
-#let hld(x) = strong(text(fill: theme-color-configuration.colors.quaternary)[#x])
-#let hldd(x) = strong(text(fill: theme-color-configuration.colors.quaternary-dark)[#x])
+#let theme-colors = (
+  // standard
+  a0: theme-color-configuration.colors.primary,
+  b0: theme-color-configuration.colors.secondary,
+  c0: theme-color-configuration.colors.tertiary,
+  d0: theme-color-configuration.colors.quaternary,
+  e0: theme-color-configuration.colors.quinary,
+  // darker
+  ad: theme-color-configuration.colors.primary-dark,
+  bd: theme-color-configuration.colors.secondary-dark,
+  cd: theme-color-configuration.colors.tertiary-dark,
+  dd: theme-color-configuration.colors.quaternary-dark,
+  ed: theme-color-configuration.colors.quinary-dark,
+)
 
-#let right-arrow-a = text(fill: theme-color-configuration.colors.primary)[▶️]
-#let right-arrow-b = text(fill: theme-color-configuration.colors.secondary)[▶️]
-#let right-arrow-c = text(fill: theme-color-configuration.colors.tertiary)[▶️]
-#let right-arrow-e = text(fill: theme-color-configuration.colors.quinary)[▶️]
-#let right-arrow-d = text(fill: theme-color-configuration.colors.quaternary)[▶️]
+#let hla(x) = strong(text(fill: theme-colors.a0)[#x])
+#let hlb(x) = strong(text(fill: theme-colors.b0)[#x])
+#let hlc(x) = strong(text(fill: theme-colors.c0)[#x])
+#let hld(x) = strong(text(fill: theme-colors.d0)[#x])
+#let hle(x) = strong(text(fill: theme-colors.e0)[#x])
+
+#let hlad(x) = strong(text(fill: theme-colors.ad)[#x])
+#let hlbd(x) = strong(text(fill: theme-colors.bd)[#x])
+#let hlcd(x) = strong(text(fill: theme-colors.cd)[#x])
+#let hled(x) = strong(text(fill: theme-colors.ed)[#x])
+#let hldd(x) = strong(text(fill: theme-colors.dd)[#x])
+
+#let right-arrow-a = text(fill: theme-colors.a0)[▶️]
+#let right-arrow-b = text(fill: theme-colors.b0)[▶️]
+#let right-arrow-c = text(fill: theme-colors.c0)[▶️]
+#let right-arrow-e = text(fill: theme-colors.e0)[▶️]
+#let right-arrow-d = text(fill: theme-colors.d0)[▶️]
 #let right-arrow-k = text(fill: black)[▶️]
 #let right-arrow = right-arrow-a
