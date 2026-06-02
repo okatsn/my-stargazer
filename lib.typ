@@ -40,6 +40,7 @@
   title-size: 1.4em,
   text-size: 1em,
   exclude: (), // Strings whose text matches any entry in this list (and their sub-headings) are hidden from the outline. Example: exclude: ("Appendices",)
+  depth: 2, // Maximum heading level to show in outline (default: 1 shows only level 1 headings)
   ..args,
 ) = touying-slide-wrapper(self => {
   self = utils.merge-dicts(
@@ -117,9 +118,9 @@
           outline(
             title: none,
             indent: 1em,
-            depth: self.slide-level,
+            depth: depth,
             ..args,
-          ), // self.slide-level is heading of `level: 2`.
+          ), // Use the depth parameter. Use self.slide-level to heading of `level: 2`.
         )
       },
     ),
