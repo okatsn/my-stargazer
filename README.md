@@ -7,13 +7,13 @@ Install my-stargazer
 ```bash
 pkgver="0.0.3"
 target_path=~/.local/share/typst/packages/local/my-stargazer/$pkgver
-mkdir -p "$target_path"  
+mkdir -p "$target_path"
 git clone --depth 1 --branch $pkgver https://github.com/okatsn/my-stargazer.git "$target_path"
 # Create symlink to your development directory
 ln -s "$target_path" $(pwd)
 ```
 
-and 
+and
 
 ```typst
 #import "@local/my-stargazer:0.0.3": *
@@ -47,3 +47,9 @@ my-package/
   □ Package name follows kebab-case convention
   □ Code follows reasonable style (2-space indent recommended)
 
+
+## Releases
+
+### 0.0.14
+
+- Simply bump `mitex` to 0.2.7 to prevent error in typst 0.15.1

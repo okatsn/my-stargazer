@@ -2,7 +2,7 @@
 #import "@preview/touying:0.7.1": *
 #import themes.stargazer: *
 #import "@preview/numbly:0.1.0": numbly
-#import "@preview/mitex:0.2.5": *
+#import "@preview/mitex:0.2.7": *
 #import "blocks.typ": *
 #import "rubies.typ": *
 #import "roadmap.typ": *
