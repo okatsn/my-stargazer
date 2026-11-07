@@ -1,7 +1,19 @@
 {
-    "devcontainer_name": "my-stargazer",
+    "project_id": "mystargazer",
+    "devcontainer_name": "MyStargazer",
     "service": "devsgzr",
     "image": "sgzr",
     "docker_compose_name": "typst-stargazer-with-julia",
-    "dind": false
+    "dind": false,
+    "instruction_families": [
+        "common",
+        "typst",
+        "logseq-dev-notes",
+        "shell"
+    ],
+    "skill_families": [
+        "common",
+        "typst",
+        "logseq"
+    ]
 }
