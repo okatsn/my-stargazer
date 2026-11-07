@@ -53,3 +53,8 @@ my-package/
 ### 0.0.14
 
 - Simply bump `mitex` to 0.2.7 to prevent error in typst 0.15.1
+
+### 0.0.15
+
+- Upgrade `touying` to 0.8.0, whose `components.knob-marker` no longer uses `place` and so is aligned with the text baseline in Typst 0.15 (fixes the bullet sitting below the first line).
+- Minimum Typst version raised to 0.15.0 (required by touying 0.8.0).

@@ -32,7 +32,7 @@
     new-section-slide-fn: new-section-slide.with(numbered: false),
   ),
   config-methods(
-    cover: utils.semi-transparent-cover.with(alpha: 50%),
+    cover: utils.alpha-changing-cover.with(alpha: 50%),
     init: (self: none, body) => {
       set text(size: 24pt, font: ("Noto Serif CJK TC", "Tinos"))
       set list(marker: components.knob-marker(primary: self.colors.primary))

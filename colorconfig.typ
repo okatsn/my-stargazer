@@ -1,4 +1,4 @@
-#import "@preview/touying:0.7.1": config-colors
+#import "@preview/touying:0.8.0": config-colors
 
 #let theme-color-configuration = config-colors(
   primary: rgb("#005bac"),
